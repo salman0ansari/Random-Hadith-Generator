@@ -8,10 +8,7 @@ async function fetchHadithJSON(hname) {
   const response = await fetch(`https://random-hadith-generator.vercel.app/${hname}`, {
     mode: "cors"
   });
-  const hadith = await response.json();
-  // book.innerHTML = 
-  console.log(book.value)
-  
+  const hadith = await response.json();  
   return hadith;
 }
 
