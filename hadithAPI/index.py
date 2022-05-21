@@ -1,9 +1,11 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 import random
 import json
   
 # creating a Flask app
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/', methods = ["GET"])
 def home():
