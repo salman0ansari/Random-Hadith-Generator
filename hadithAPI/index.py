@@ -24,6 +24,9 @@ def home():
     <a href="/bukhari/1">/bukhari/1</a>
     <br>
     <a href="/muslim/1">/muslim/1</a>
+    <br>
+    <h1> Web App </h1>
+    <a href="https://salman0ansari.github.io/Random-Hadith-Generator">Web App</a>
     '''
     )
   
