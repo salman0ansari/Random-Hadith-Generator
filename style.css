@@ -137,3 +137,19 @@ img {
         width: 200px;
     }
 }
+
+#custom input, select {
+    max-width: 175px;
+    height: 50px;
+    font-size: 1em;
+    background: #2c2c54;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    outline: none;
+    transition: all .3s;
+    margin-bottom: 15px;
+    text-align: center;
+}
