@@ -1,68 +1,70 @@
-let header = document.querySelector("#header");
-let hadith = document.querySelector("#hadith-text");
-let book = document.getElementById("book");
-let customBtn = document.getElementById("customBtn ");
-const wrapper = document.getElementById("wrapper");
+const header = document.querySelector("#header");
+const hadithText = document.querySelector("#hadith-text");
+const book = document.querySelector("#book");
+const customBtn = document.querySelector("#customBtn");
+const wrapper = document.querySelector("#wrapper");
 
-// Request Hadith Data from API
-async function fetchHadithJSON(hname) {
+// Use arrow functions for concise, readable code
+const fetchHadithJSON = async (hname) => {
   const response = await fetch(
     `https://random-hadith-generator.vercel.app/${hname}`,
-    {
-      mode: "cors",
-    }
+    { mode: "cors" }
   );
-  const hadith = await response.json();
-  return hadith;
-}
+  const { data } = await response.json();
+  return data;
+};
 
-async function fetchCustom(hname, number) {
+const fetchCustom = async (hname, number) => {
   const response = await fetch(
     `https://random-hadith-generator.vercel.app/${hname}/${number}`,
-    {
-      mode: "cors",
-    }
+    { mode: "cors" }
   );
-  const hadith = await response.json();
-  return hadith;
-}
+  const { data } = await response.json();
+  return data;
+};
 
-// Load Hadith Data from API
-async function loadHadith(e) {
-  if (e.target.id === "bukhari") {
-    hname = "bukhari";
-  } else if (e.target.id === "muslim") {
-    hname = "muslim";
-  } else if (e.target.id === "customBtn") {
-    console.log("customBtn");
-    let customHadith = document.getElementById("customHadith").value;
-    let number = document.getElementById("customInput").value;
-    if (customHadith === "bukhari") {
+const loadHadithData = async (e) => {
+  let hname;
+  // Use a switch statement for improved readability
+  switch (e.target.id) {
+    case "bukhari":
       hname = "bukhari";
-      const { data } = await fetchCustom("bukhari", number);
-      header.innerHTML = data.header;
-      hadith.innerHTML = data.hadith_english;
-      book.innerHTML = data.refno;
-      return;
-    } else if (customHadith === "muslim") {
+      break;
+    case "muslim":
       hname = "muslim";
-      const { data } = await fetchCustom("muslim", number);
-      header.innerHTML = data.header;
-      hadith.innerHTML = data.hadith_english;
-      book.innerHTML = data.refno;
-    }
-    return;
+      break;
+    case "customBtn":
+      const customHadith = document.querySelector("#customHadith").value;
+      const number = document.querySelector("#customInput").value;
+      if (customHadith === "bukhari") {
+        hname = "bukhari";
+        const hadithData = await fetchCustom("bukhari", number);
+        // Use destructuring to access nested properties
+        const { header, hadith_english, refno } = hadithData;
+        header.innerHTML = header;
+        hadithText.innerHTML = hadith_english;
+        book.innerHTML = refno;
+      } else if (customHadith === "muslim") {
+        hname = "muslim";
+        const hadithData = await fetchCustom("muslim", number);
+        const { header, hadith_english, refno } = hadithData;
+        header.innerHTML = header;
+        hadithText.innerHTML = hadith_english;
+        book.innerHTML = refno;
+      }
+      return;
+    default:
+      return;
   }
+  const hadithData = await fetchHadithJSON(hname);
+  const { header, hadith_english, refno } = hadithData;
+  header.innerHTML = header;
+  hadithText.innerHTML = hadith_english;
+  book.innerHTML = refno;
+};
 
-  const { data } = await fetchHadithJSON(hname);
-  header.innerHTML = data.header;
-  hadith.innerHTML = data.hadith_english;
-  book.innerHTML = data.refno;
-}
-
-// Get a random hadith when button is clicked
-async function loadHadithOnButtonClick(e) {
-  loadHadith(e);
-}
+const loadHadithOnButtonClick = async (e) => {
+  await loadHadithData(e);
+};
 
 wrapper.addEventListener("click", loadHadithOnButtonClick);
