@@ -19,13 +19,25 @@
             <p id="hadith-text"></p>
             <h5 id="book"></h5>
             <div id="wrapper">
-                <button id="bukhari">Generate Bukhari Hadith</button></br>
-                <button id="muslim">Generate Muslim Hadith</button></br>
+                <div id="random">
+                    <select id="randomHadith">
+                        <option value="bukhari">Bukhari</option>
+                        <option value="muslim">Muslim</option>
+                        <option value="abudawud">Abu Dawud</option>
+                        <option value="ibnmajah">Ibn Majah</option>
+                        <option value="tirmidhi">Tirmidhi</option>
+                    </select>
+                    <button id="randomBtn">Generate Random</button></br>
+                </div>
+
                 <div id="custom">
                     <input id="customInput" placeholder="Enter Hadith Number"></input>
                     <select id="customHadith">
                         <option value="bukhari">Bukhari</option>
-                        <option value="muslim">muslim</option>
+                        <option value="muslim">Muslim</option>
+                        <option value="abudawud">Abu Dawud</option>
+                        <option value="ibnmajah">Ibn Majah</option>
+                        <option value="tirmidhi">Tirmidhi</option>
                     </select>
                 </div>
                 <button id="customBtn">Generate Custom</button></br>
@@ -34,8 +46,11 @@
 
 
         <footer>
-            <a href="https://github.com/salman0ansari" target="_blank">
+            <a href="https://github.com/salman0ansari/Random-Hadith-Generator" target="_blank">
                 View project on GitHub<img src="external-link.svg" alt="External Link">
+            </a>
+            <a href="https://random-hadith-generator.vercel.app/" target="_blank">
+                View API Docs<img src="external-link.svg" alt="External Link">
             </a>
         </footer>
     </div>
