@@ -57,9 +57,9 @@ def home():
                 <ul>
                     <li><a href="/bukhari">Sahih Al-Bukhari</a></li>
                     <li><a href="/muslim">Sahih Muslim</a></li>
-                    <li><a href="/abudawud">Sahih Abu Dawud</a></li>
-                    <li><a href="/ibnmajah">Sahih Ibn Majah</a></li>
-                    <li><a href="/tirmidhi">Sahih Al-Tirmidhi</a></li>
+                    <li><a href="/abudawud">Abu Dawud</a></li>
+                    <li><a href="/ibnmajah">Ibn Majah</a></li>
+                    <li><a href="/tirmidhi">Al-Tirmidhi</a></li>
                 </ul>
                 <h2>Get custom</h2>
                 <p>
