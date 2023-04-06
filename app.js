@@ -1,10 +1,9 @@
-const header = document.querySelector("#header");
+const hadithHeader = document.querySelector("#header");
 const hadithText = document.querySelector("#hadith-text");
 const book = document.querySelector("#book");
 const customBtn = document.querySelector("#customBtn");
 const wrapper = document.querySelector("#wrapper");
 
-// Use arrow functions for concise, readable code
 const fetchHadithJSON = async (hname) => {
   const response = await fetch(
     `https://random-hadith-generator.vercel.app/${hname}`,
@@ -25,7 +24,7 @@ const fetchCustom = async (hname, number) => {
 
 const loadHadithData = async (e) => {
   let hname;
-  // Use a switch statement for improved readability
+
   switch (e.target.id) {
     case "bukhari":
       hname = "bukhari";
@@ -39,16 +38,16 @@ const loadHadithData = async (e) => {
       if (customHadith === "bukhari") {
         hname = "bukhari";
         const hadithData = await fetchCustom("bukhari", number);
-        // Use destructuring to access nested properties
+
         const { header, hadith_english, refno } = hadithData;
-        header.innerHTML = header;
+        hadithHeader.innerHTML = header;
         hadithText.innerHTML = hadith_english;
         book.innerHTML = refno;
       } else if (customHadith === "muslim") {
         hname = "muslim";
         const hadithData = await fetchCustom("muslim", number);
         const { header, hadith_english, refno } = hadithData;
-        header.innerHTML = header;
+        hadithHeader.innerHTML = header;
         hadithText.innerHTML = hadith_english;
         book.innerHTML = refno;
       }
@@ -58,7 +57,7 @@ const loadHadithData = async (e) => {
   }
   const hadithData = await fetchHadithJSON(hname);
   const { header, hadith_english, refno } = hadithData;
-  header.innerHTML = header;
+  hadithHeader.innerHTML = header;
   hadithText.innerHTML = hadith_english;
   book.innerHTML = refno;
 };
