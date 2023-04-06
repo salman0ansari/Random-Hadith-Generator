@@ -15,39 +15,39 @@ def home():
         <head>
             <title>Hadith API</title>
             <style>
-                body {
-                    font-family: Arial, sans-serif;
-                    background-color: #f2f2f2;
-                }
-                h1 {
-                    color: #333;
-                    text-align: center;
-                    margin-top: 50px;
-                }
-                h2 {
-                    color: #333;
-                    margin-top: 30px;
-                }
-                p {
-                    color: #666;
-                }
-                a {
-                    color: #333;
-                    text-decoration: none;
-                    border-bottom: 1px solid #333;
-                }
-                a:hover {
-                    color: #666;
-                    border-bottom: 1px solid #666;
-                }
-                .container {
-                    max-width: 600px;
-                    margin: 0 auto;
-                    padding: 50px;
-                    background-color: #fff;
-                    border-radius: 5px;
-                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-                }
+                            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 50px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            }
+            h1 {
+                color: #333;
+                text-align: center;
+                margin-top: 50px;
+            }
+            h2 {
+                color: #333;
+                margin-top: 30px;
+            }
+            p {
+                color: #666;
+            }
+            a {
+                color: #333;
+                text-decoration: none;
+                border-bottom: 1px solid #333;
+            }
+            a:hover {
+                color: #666;
+                border-bottom: 1px solid #666;
+            }
             </style>
         </head>
         <body>
