@@ -1,69 +1,35 @@
-const hadithHeader = document.querySelector("#header");
-const hadithText = document.querySelector("#hadith-text");
-const book = document.querySelector("#book");
-const customBtn = document.querySelector("#customBtn");
-const wrapper = document.querySelector("#wrapper");
+const headerElement = document.querySelector("#header");
+const hadithTextElement = document.querySelector("#hadith-text");
+const bookElement = document.querySelector("#book");
 
-const fetchHadithJSON = async (hname) => {
-  const response = await fetch(
-    `https://random-hadith-generator.vercel.app/${hname}`,
-    { mode: "cors" }
-  );
-  const { data } = await response.json();
-  return data;
-};
+const customButtonElement = document.querySelector("#customBtn");
+const randomButtonElement = document.querySelector("#randomBtn");
 
-const fetchCustom = async (hname, number) => {
-  const response = await fetch(
-    `https://random-hadith-generator.vercel.app/${hname}/${number}`,
-    { mode: "cors" }
-  );
-  const { data } = await response.json();
-  return data;
-};
-
-const loadHadithData = async (e) => {
-  let hname;
-
-  switch (e.target.id) {
-    case "bukhari":
-      hname = "bukhari";
-      break;
-    case "muslim":
-      hname = "muslim";
-      break;
-    case "customBtn":
-      const customHadith = document.querySelector("#customHadith").value;
-      const number = document.querySelector("#customInput").value;
-      if (customHadith === "bukhari") {
-        hname = "bukhari";
-        const hadithData = await fetchCustom("bukhari", number);
-
-        const { header, hadith_english, refno } = hadithData;
-        hadithHeader.innerHTML = header;
-        hadithText.innerHTML = hadith_english;
-        book.innerHTML = refno;
-      } else if (customHadith === "muslim") {
-        hname = "muslim";
-        const hadithData = await fetchCustom("muslim", number);
-        const { header, hadith_english, refno } = hadithData;
-        hadithHeader.innerHTML = header;
-        hadithText.innerHTML = hadith_english;
-        book.innerHTML = refno;
-      }
-      return;
-    default:
-      return;
+const fetchJSON = async (hname, number, custom) => {
+  let url = `https://random-hadith-generator.vercel.app/${hname}`;
+  if (custom) {
+    url += `/${number}`;
   }
-  const hadithData = await fetchHadithJSON(hname);
-  const { header, hadith_english, refno } = hadithData;
-  hadithHeader.innerHTML = header;
-  hadithText.innerHTML = hadith_english;
-  book.innerHTML = refno;
+  const response = await fetch(url, { mode: "cors" });
+  const { data } = await response.json();
+  return data;
 };
 
-const loadHadithOnButtonClick = async (e) => {
-  await loadHadithData(e);
+const updateHadithData = ({ header, hadith_english, refno }) => {
+  headerElement.innerHTML = header;
+  hadithTextElement.innerHTML = hadith_english;
+  bookElement.innerHTML = refno;
 };
 
-wrapper.addEventListener("click", loadHadithOnButtonClick);
+randomButtonElement.addEventListener("click", async (_) => {
+  const hname = document.querySelector("#randomHadith").value;
+  const hadithData = await fetchJSON(hname);
+  updateHadithData(hadithData);
+});
+
+customButtonElement.addEventListener("click", async (_) => {
+  const hname = document.querySelector("#customHadith").value;
+  const number = document.querySelector("#customInput").value;
+  const hadithData = await fetchJSON(hname, number, true);
+  updateHadithData(hadithData);
+});
